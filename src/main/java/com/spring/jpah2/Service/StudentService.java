@@ -25,4 +25,18 @@ public class StudentService {
   public Student createStudent(Student requestStudent) {
     return this.student.save(requestStudent);
   }
+
+  public Student updateStudent(Integer registration, Student requestStudent) throws Exception {
+    Optional<Student> fetchedStudent = this.student.findById(registration);
+    if (fetchedStudent == null) {
+      throw new RuntimeException("Id not found");
+    }
+
+    Student newStudent = new Student();
+    newStudent.setCourse(requestStudent.getCourse() != null ? requestStudent.getCourse() : fetchedStudent.get().getCourse());
+    newStudent.setName(requestStudent.getName() != null ? requestStudent.getName() : fetchedStudent.get().getName());
+    newStudent.setRegistration(registration);
+
+    return this.student.save(newStudent);
+  }
 }
