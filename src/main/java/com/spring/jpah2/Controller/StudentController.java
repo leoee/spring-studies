@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.spring.jpah2.Model.Student;
 import com.spring.jpah2.Service.StudentService;
-import com.spring.jpah2.utils.GlobalErrorResponse;
+import com.spring.jpah2.Utils.GlobalErrorResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

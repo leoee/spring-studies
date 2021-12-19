@@ -1,4 +1,4 @@
-package com.spring.jpah2.utils;
+package com.spring.jpah2.Utils;
 
 public class GlobalErrorResponse {
 	private String message;
