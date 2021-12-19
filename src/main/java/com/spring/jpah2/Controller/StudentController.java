@@ -7,6 +7,8 @@ import com.spring.jpah2.Model.Student;
 import com.spring.jpah2.Service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +30,7 @@ public class StudentController {
   }
 
   @RequestMapping(value = "/student", method = RequestMethod.POST)
-  Student createStudent(@RequestBody Student requestStudent) {
-    return this.student.createStudent(requestStudent);
+  ResponseEntity<?> createStudent(@RequestBody Student requestStudent) {
+    return new ResponseEntity<>(this.student.createStudent(requestStudent), HttpStatus.CREATED);
   }
 }
