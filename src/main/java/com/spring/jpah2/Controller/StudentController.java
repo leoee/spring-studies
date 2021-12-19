@@ -27,8 +27,16 @@ public class StudentController {
   }
 
   @RequestMapping(value = "/student/{registration}", method = RequestMethod.GET)
-  Optional<Student> getStudentById(@PathVariable Integer registration) {
-    return this.student.getStudentById(registration);
+  ResponseEntity<?> getStudentById(@PathVariable Integer registration) {
+    Optional<Student> fetchedStudent;
+    try {
+      fetchedStudent = this.student.getStudentById(registration);
+    } catch (Exception e) {
+      GlobalErrorResponse errorDetails = new GlobalErrorResponse("Id not found", "Can not update item because id does not exist");
+      return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    return ResponseEntity.ok(fetchedStudent);
   }
 
   @RequestMapping(value = "/student", method = RequestMethod.POST)

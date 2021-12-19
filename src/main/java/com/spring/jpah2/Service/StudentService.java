@@ -19,7 +19,12 @@ public class StudentService {
   }
 
   public Optional<Student> getStudentById(Integer registration) {
-    return this.student.findById(registration);
+    Optional<Student> fetchedStudent = this.student.findById(registration);
+    if (fetchedStudent == null) {
+      throw new RuntimeException("Id not found");
+    }
+
+    return fetchedStudent;
   }
 
   public Student createStudent(Student requestStudent) {
